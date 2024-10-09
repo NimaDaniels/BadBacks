@@ -21,6 +21,7 @@ namespace BadBacks
         DispatcherTimer Timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
         int matchesFound = 0;
+        bool gameStarted;
 
         public MainWindow()
         {
@@ -29,7 +30,6 @@ namespace BadBacks
 
             Timer.Interval = TimeSpan.FromSeconds(0.1);
             Timer.Tick += Timer_Tick;
-            Timer.Start();
 
             SetUpGame();
         }
@@ -42,6 +42,7 @@ namespace BadBacks
             string nextEmoji;
             Random random;
             int index;
+
 
             animalEmoji = new List<string>()
             {
@@ -96,6 +97,14 @@ namespace BadBacks
                 lastClickedTextBlock = clickedTextBlock;
 
                 statusTextBlock.Text = "Finding...";
+
+                
+                if (gameStarted == false)
+                {
+                    gameStarted = true;
+                    Timer.Start();
+                }
+
             }
             else if (clickedTextBlock.Text == lastClickedTextBlock.Text)
             {
@@ -107,6 +116,8 @@ namespace BadBacks
                 if (matchesFound == 8)
                 {
                     statusTextBlock.Text = "You won!";
+                    gameStarted = false;
+
                     Timer.Stop();
                 }
 
