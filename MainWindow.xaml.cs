@@ -9,14 +9,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BadBacks
 {
+
+
     public partial class MainWindow : Window
     {
+
+        DispatcherTimer Timer = new DispatcherTimer();
+        int tenthsOfSecondsElapsed;
+        int matchesFound = 0;
+        bool gameStarted;
+
         public MainWindow()
         {
             InitializeComponent();
+
+
+            Timer.Interval = TimeSpan.FromSeconds(0.1);
+            Timer.Tick += Timer_Tick;
+
             SetUpGame();
         }
 
@@ -28,6 +42,7 @@ namespace BadBacks
             string nextEmoji;
             Random random;
             int index;
+
 
             animalEmoji = new List<string>()
             {
@@ -44,6 +59,9 @@ namespace BadBacks
 
             foreach (TextBlock emojiIconContainer in MainGrid.Children.OfType<TextBlock>())
             {
+                emojiIconContainer.Visibility = Visibility.Visible;
+                tenthsOfSecondsElapsed = 0;
+
                 if (emojiIconContainer.Name == "statustextblock")
                 {
                     emojiIconContainer.Text = "Click animal!";
@@ -55,7 +73,7 @@ namespace BadBacks
                 emojiIconContainer.Text = nextEmoji;
                 animalEmoji.RemoveAt(index);
             }
-            
+
 
             foreach (TextBlock textblock in MainGrid.Children.OfType<TextBlock>())
             {
@@ -70,9 +88,9 @@ namespace BadBacks
         bool findingMatch;
         TextBlock lastClickedTextBlock;
 
-        
         private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
 
             TextBlock clickedTextBlock = sender as TextBlock;
             if (findingMatch == false)
@@ -82,12 +100,31 @@ namespace BadBacks
                 lastClickedTextBlock = clickedTextBlock;
 
                 statusTextBlock.Text = "Finding...";
+
+                
+                if (gameStarted == false)
+                {
+                    gameStarted = true;
+                    Timer.Start();
+                }
+
             }
             else if (clickedTextBlock.Text == lastClickedTextBlock.Text)
             {
                 findingMatch = false;
                 clickedTextBlock.Visibility = Visibility.Hidden;
                 statusTextBlock.Text = "Good job!";
+                matchesFound += 1;
+
+                if (matchesFound == 8)
+                {
+                    statusTextBlock.Text = "You won!";
+                    gameStarted = false;
+                    matchesFound = 0;
+
+
+                    Timer.Stop();
+                }
 
             }
             else
@@ -97,6 +134,19 @@ namespace BadBacks
                 statusTextBlock.Text = "Wrong pair!";
             }
 
+
+            if (gameStarted == false)
+            {
+                SetUpGame();
+            }
         }
+
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            tenthsOfSecondsElapsed++;
+            timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
+        }
+
     }
 }
