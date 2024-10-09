@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BadBacks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cbeb207e1cdabbd126274e622b7fc0df2b88ceb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be299ff8c3c8eeef1043084ae1d228c8e21b477a")]
 [assembly: System.Reflection.AssemblyProductAttribute("BadBacks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BadBacks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
