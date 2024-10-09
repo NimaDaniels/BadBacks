@@ -9,14 +9,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BadBacks
 {
+
+
     public partial class MainWindow : Window
     {
+
+        DispatcherTimer Timer = new DispatcherTimer();
+        int tenthsOfSecondsElapsed;
+        int matchesFound = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+
+
+            Timer.Interval = TimeSpan.FromSeconds(0.1);
             SetUpGame();
         }
 
@@ -74,6 +85,7 @@ namespace BadBacks
         private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+
             TextBlock clickedTextBlock = sender as TextBlock;
             if (findingMatch == false)
             {
@@ -88,6 +100,12 @@ namespace BadBacks
                 findingMatch = false;
                 clickedTextBlock.Visibility = Visibility.Hidden;
                 statusTextBlock.Text = "Good job!";
+                matchesFound += 1;
+
+                if (matchesFound == 8)
+                {
+                    statusTextBlock.Text = "You won!";
+                }
 
             }
             else
@@ -98,5 +116,8 @@ namespace BadBacks
             }
 
         }
+
+
+
     }
 }
