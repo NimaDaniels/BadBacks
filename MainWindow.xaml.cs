@@ -12,9 +12,6 @@ using System.Windows.Shapes;
 
 namespace BadBacks
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -23,6 +20,7 @@ namespace BadBacks
             SetUpGame();
         }
 
+        TextBlock statusTextBlock;
         private void SetUpGame()
         {
 
@@ -46,38 +44,56 @@ namespace BadBacks
 
             foreach (TextBlock emojiIconContainer in MainGrid.Children.OfType<TextBlock>())
             {
+                if (emojiIconContainer.Name == "statustextblock")
+                {
+                    break;
+                }
+
                 index = random.Next(animalEmoji.Count);
                 nextEmoji = animalEmoji[index];
                 emojiIconContainer.Text = nextEmoji;
                 animalEmoji.RemoveAt(index);
+            }
+
+            foreach (TextBlock textblock in MainGrid.Children.OfType<TextBlock>())
+            {
+                if (textblock.Name == "statustextblock")
+                {
+                    statusTextBlock = textblock;
+                }
             }
         }
 
 
         bool findingMatch;
         TextBlock lastClickedTextBlock;
+
+        
         private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             TextBlock clickedTextBlock = sender as TextBlock;
             if (findingMatch == false)
             {
                 findingMatch = true;
                 clickedTextBlock.Visibility = Visibility.Hidden;
                 lastClickedTextBlock = clickedTextBlock;
-                
+
+                statusTextBlock.Text = "Finding...";
             }
             else if (clickedTextBlock.Text == lastClickedTextBlock.Text)
             {
                 findingMatch = false;
                 clickedTextBlock.Visibility = Visibility.Hidden;
+                statusTextBlock.Text = "Good job!";
 
             }
             else
             {
                 findingMatch = false;
                 lastClickedTextBlock.Visibility = Visibility.Visible;
+                statusTextBlock.Text = "Wrong pair!";
             }
-            
 
         }
     }

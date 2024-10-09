@@ -107,7 +107,7 @@
             FontSize="36"
             Grid.Column="3" Grid.Row="3" MouseDown="mousedown_MouseDown"/>
 
-        <TextBlock Text="" Grid.Column="4" Grid.Row="4"
+        <TextBlock x:Name="statustextblock"  Text="" Grid.Column="4" Grid.Row="4"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         />
