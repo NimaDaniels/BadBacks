@@ -28,6 +28,8 @@ namespace BadBacks
 
 
             Timer.Interval = TimeSpan.FromSeconds(0.1);
+            Timer.Tick += Timer_Tick;
+
             SetUpGame();
         }
 
@@ -66,7 +68,7 @@ namespace BadBacks
                 emojiIconContainer.Text = nextEmoji;
                 animalEmoji.RemoveAt(index);
             }
-            
+
 
             foreach (TextBlock textblock in MainGrid.Children.OfType<TextBlock>())
             {
@@ -81,7 +83,6 @@ namespace BadBacks
         bool findingMatch;
         TextBlock lastClickedTextBlock;
 
-        
         private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -117,7 +118,10 @@ namespace BadBacks
 
         }
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
