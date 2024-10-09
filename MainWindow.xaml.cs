@@ -29,6 +29,7 @@ namespace BadBacks
 
             Timer.Interval = TimeSpan.FromSeconds(0.1);
             Timer.Tick += Timer_Tick;
+            Timer.Start();
 
             SetUpGame();
         }
@@ -106,6 +107,7 @@ namespace BadBacks
                 if (matchesFound == 8)
                 {
                     statusTextBlock.Text = "You won!";
+                    Timer.Stop();
                 }
 
             }
@@ -120,7 +122,8 @@ namespace BadBacks
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            tenthsOfSecondsElapsed++;
+            timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
         }
 
     }
