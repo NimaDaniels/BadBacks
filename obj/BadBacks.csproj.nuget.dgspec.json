@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NimaBavar\\source\\repos\\BadBacks\\BadBacks\\BadBacks.csproj": {}
+    "C:\\Users\\NimaBavar\\Desktop\\projects\\BadBacks\\BadBacks\\BadBacks.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NimaBavar\\source\\repos\\BadBacks\\BadBacks\\BadBacks.csproj": {
+    "C:\\Users\\NimaBavar\\Desktop\\projects\\BadBacks\\BadBacks\\BadBacks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NimaBavar\\source\\repos\\BadBacks\\BadBacks\\BadBacks.csproj",
+        "projectUniqueName": "C:\\Users\\NimaBavar\\Desktop\\projects\\BadBacks\\BadBacks\\BadBacks.csproj",
         "projectName": "BadBacks",
-        "projectPath": "C:\\Users\\NimaBavar\\source\\repos\\BadBacks\\BadBacks\\BadBacks.csproj",
+        "projectPath": "C:\\Users\\NimaBavar\\Desktop\\projects\\BadBacks\\BadBacks\\BadBacks.csproj",
         "packagesPath": "C:\\Users\\NimaBavar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NimaBavar\\source\\repos\\BadBacks\\BadBacks\\obj\\",
+        "outputPath": "C:\\Users\\NimaBavar\\Desktop\\projects\\BadBacks\\BadBacks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

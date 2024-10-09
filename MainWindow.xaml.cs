@@ -44,13 +44,41 @@ namespace BadBacks
             };
             random = new Random();
 
-            foreach(TextBlock emojiIconHolder in MainGrid.Children.OfType<TextBlock>())
+            foreach (TextBlock emojiIconContainer in MainGrid.Children.OfType<TextBlock>())
             {
                 index = random.Next(animalEmoji.Count);
                 nextEmoji = animalEmoji[index];
-                emojiIconHolder.Text = nextEmoji;
+                emojiIconContainer.Text = nextEmoji;
                 animalEmoji.RemoveAt(index);
             }
+        }
+
+
+        bool findingMatch;
+        TextBlock lastClickedTextBlock;
+        private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock clickedTextBlock = sender as TextBlock;
+            if (findingMatch == false)
+            {
+                findingMatch = true;
+                clickedTextBlock.Visibility = Visibility.Hidden;
+                lastClickedTextBlock = clickedTextBlock;
+                
+            }
+            else if (clickedTextBlock.Text == lastClickedTextBlock.Text)
+            {
+                findingMatch = false;
+                clickedTextBlock.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                findingMatch = false;
+                lastClickedTextBlock.Visibility = Visibility.Visible;
+            }
+            
+
         }
     }
 }
