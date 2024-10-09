@@ -46,6 +46,7 @@ namespace BadBacks
             {
                 if (emojiIconContainer.Name == "statustextblock")
                 {
+                    emojiIconContainer.Text = "Click animal!";
                     break;
                 }
 
@@ -54,6 +55,7 @@ namespace BadBacks
                 emojiIconContainer.Text = nextEmoji;
                 animalEmoji.RemoveAt(index);
             }
+            
 
             foreach (TextBlock textblock in MainGrid.Children.OfType<TextBlock>())
             {
