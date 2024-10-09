@@ -59,6 +59,9 @@ namespace BadBacks
 
             foreach (TextBlock emojiIconContainer in MainGrid.Children.OfType<TextBlock>())
             {
+                emojiIconContainer.Visibility = Visibility.Visible;
+                tenthsOfSecondsElapsed = 0;
+
                 if (emojiIconContainer.Name == "statustextblock")
                 {
                     emojiIconContainer.Text = "Click animal!";
@@ -117,6 +120,8 @@ namespace BadBacks
                 {
                     statusTextBlock.Text = "You won!";
                     gameStarted = false;
+                    matchesFound = 0;
+
 
                     Timer.Stop();
                 }
@@ -129,7 +134,13 @@ namespace BadBacks
                 statusTextBlock.Text = "Wrong pair!";
             }
 
+
+            if (gameStarted == false)
+            {
+                SetUpGame();
+            }
         }
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
