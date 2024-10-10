@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Data.Common;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,7 @@ namespace BadBacks
         int tenthsOfSecondsElapsed;
         int matchesFound = 0;
         bool gameStarted;
+        bool playerWon = false;
 
         public MainWindow()
         {
@@ -90,8 +92,6 @@ namespace BadBacks
 
         private void mousedown_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-
             TextBlock clickedTextBlock = sender as TextBlock;
             if (findingMatch == false)
             {
@@ -104,9 +104,13 @@ namespace BadBacks
                 
                 if (gameStarted == false)
                 {
+                    matchesFound = 0;
                     gameStarted = true;
+                    playerWon = false;
+
                     Timer.Start();
-                }
+                } 
+                
 
             }
             else if (clickedTextBlock.Text == lastClickedTextBlock.Text)
@@ -118,12 +122,8 @@ namespace BadBacks
 
                 if (matchesFound == 8)
                 {
-                    statusTextBlock.Text = "You won!";
                     gameStarted = false;
-                    matchesFound = 0;
-
-
-                    Timer.Stop();
+                    playerWon = true;
                 }
 
             }
@@ -133,19 +133,41 @@ namespace BadBacks
                 lastClickedTextBlock.Visibility = Visibility.Visible;
                 statusTextBlock.Text = "Wrong pair!";
             }
-
-
-            if (gameStarted == false)
-            {
-                SetUpGame();
-            }
         }
 
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            float record = tenthsOfSecondsElapsed / 10F;
+
+
+            if (gameStarted == false && playerWon == false)
+            {
+                Timer.Stop();
+                SetUpGame();
+
+                timeTextBlock.Text = (record - 0.1).ToString("0.0s");
+                statusTextBlock.Text = "You failed!";
+                return;
+            }
+
+            if (gameStarted == false && playerWon == true)
+            {
+                Timer.Stop();
+                SetUpGame();
+
+                statusTextBlock.Text = "You won!";
+            }
+
+
             tenthsOfSecondsElapsed++;
-            timeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
+
+            if (record >= 5)
+            {
+                gameStarted = false;
+            }
+
+            timeTextBlock.Text = (record).ToString("0.0s");
         }
 
     }
