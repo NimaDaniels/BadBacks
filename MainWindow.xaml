@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BadBacks"
         mc:Ignorable="d"
-        Title="Find all of the matching animals" 
+        Title="BadBacks" 
         Height="400" 
         Width="320" 
         Cursor="" 
